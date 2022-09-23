@@ -17,7 +17,10 @@
 """First assignment for the CMEPDA course, 2022/23.
 """
 
+import time
 import argparse
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 def process(file_path):
@@ -26,12 +29,34 @@ def process(file_path):
     print(f'Opening input file {file_path}...')
     with open(file_path, 'r') as input_file:
         text = input_file.read()
-    print(text)
+    #print(text)
     print('Done.')
+    return text
+
+
+def count_characters(text_string, dict, letter):
+    """
+    """
+    text_string.lower()
+    length = len(text_string)
+    dict[letter] = text_str.count(letter, 1, length+1)
 
 
 if __name__ == '__main__':
+    t1 = time.time()
     parser = argparse.ArgumentParser(description='Print some book statistics')
     parser.add_argument('infile', type=str, help='path to the input file')
     args = parser.parse_args()
-    process(args.infile)
+    text_str = process(args.infile)
+
+    alphabet = {}
+    lett = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    for l in lett:
+        count_characters(text_str, alphabet, l)
+
+    array = list(alphabet.values())
+
+    t2 = time.time()
+    print(f"Durata del programma = {t2-t1} secondi")

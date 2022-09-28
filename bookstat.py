@@ -56,14 +56,17 @@ if __name__ == '__main__':
     for l in lett:
         count_characters(text_str, alphabet, l)
 
-    array = list(alphabet.values())
+    val = list(alphabet.values())
+    array = np.array(val)
+    s = sum(array)
+    array = array*100./s
 
-    a0 = np.zeros(len(lett))
-    for i in range(1, len(lett)+1, 1):
-        a0[i-1] = i
-
-    plt.hist(lett, len(lett), weights=array, density=True)
-    plt.show()
+    plt.bar(lett, array)
+    plt.title("Distribuzione delle lettere nel libro")
+    plt.ylabel("Occorrenze percentuali")
+    plt.grid(linestyle="--", linewidth=0.5)
+    plt.savefig("occurrences.png")
+    #plt.show()
 
     t2 = time.time()
     print(f"Durata del programma = {t2-t1} secondi")

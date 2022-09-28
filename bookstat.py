@@ -58,5 +58,12 @@ if __name__ == '__main__':
 
     array = list(alphabet.values())
 
+    a0 = np.zeros(len(lett))
+    for i in range(1, len(lett)+1, 1):
+        a0[i-1] = i
+
+    plt.hist(lett, len(lett), weights=array, density=True)
+    plt.show()
+
     t2 = time.time()
     print(f"Durata del programma = {t2-t1} secondi")
